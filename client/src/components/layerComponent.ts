@@ -12,11 +12,24 @@ export class LayerComponent extends Component<object> implements IDisplayCompone
   // La méthode *display* est appelée une fois par itération
   // de la boucle de jeu.
   public display(dT: number) {
+  
     const layerSprites = this.listSprites();
     if (layerSprites.length === 0) {
       return;
     }
-    const spriteSheet = layerSprites[0].spriteSheet;
+    
+    for (let index = 0; index < layerSprites.length; index++) {
+      const spriteSheet = layerSprites[index].spriteSheet;
+      const GL = layerSprites[index].getGL()
+      const vertexBuffer = layerSprites[index].getVertexBuffer()
+      const indexBuffer = layerSprites[index].getIndexBuffer()
+      GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
+      GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, indexBuffer);
+      spriteSheet.bind();
+      GL.drawElements(GL.TRIANGLES, 6, GL.UNSIGNED_SHORT, 0);
+      spriteSheet.unbind();
+    }
+   
   }
 
   // ## Fonction *listSprites*

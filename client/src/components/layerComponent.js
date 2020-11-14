@@ -33,7 +33,15 @@ var LayerComponent = /** @class */ (function (_super) {
         if (layerSprites.length === 0) {
             return;
         }
-        var spriteSheet = layerSprites[0].spriteSheet;
+        var spriteSheet = layerSprites[dT].spriteSheet;
+        var GL = layerSprites[dT].getGL();
+        var vertexBuffer = layerSprites[dT].getVertexBuffer();
+        var indexBuffer = layerSprites[dT].getIndexBuffer();
+        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
+        GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, indexBuffer);
+        spriteSheet.bind();
+        GL.drawElements(GL.TRIANGLES, 6, GL.UNSIGNED_SHORT, 0);
+        spriteSheet.unbind();
     };
     // ## Fonction *listSprites*
     // Cette fonction retourne une liste comportant l'ensemble

@@ -156,6 +156,15 @@ var SpriteComponent = /** @class */ (function (_super) {
         GL.bindBuffer(GL.ARRAY_BUFFER, this.vertexBuffer);
         GL.bufferSubData(GL.ARRAY_BUFFER, offset, this.vertices);
     };
+    SpriteComponent.prototype.getGL = function () {
+        return GL;
+    };
+    SpriteComponent.prototype.getVertexBuffer = function () {
+        return this.vertexBuffer;
+    };
+    SpriteComponent.prototype.getIndexBuffer = function () {
+        return this.indexBuffer;
+    };
     return SpriteComponent;
 }(component_1.Component));
 exports.SpriteComponent = SpriteComponent;

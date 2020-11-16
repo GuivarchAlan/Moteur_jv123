@@ -181,15 +181,7 @@ export class SpriteComponent extends Component<ISpriteComponentDesc> implements 
     GL.bufferSubData(GL.ARRAY_BUFFER, offset, this.vertices);
   }
 
-  public getGL() {
-    return GL;
-  }
-
-  public getVertexBuffer() {
-    return this.vertexBuffer;
-  }
-
-  public getIndexBuffer() {
-    return this.indexBuffer;
+  public getVertices() {
+    return this.vertices;
   }
 }

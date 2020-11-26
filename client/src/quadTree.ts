@@ -2,7 +2,7 @@ import { ColliderComponent } from "./components/colliderComponent"
 import { Component } from "./components/component"
 import { Rectangle } from "./components/rectangle"
 
- 
+ /*
 export class Vec2 {
     x: number
     y: number
@@ -12,32 +12,7 @@ export class Vec2 {
       this.y = y
     }
   }
-/*
-  export class AABB {
-    position: Vec2
-    heigth : number
-    width : number
-    
-    constructor (position: Vec2, width: number, heigth: number) {
-      this.position = position
-      this.width = width
-      this.heigth = heigth
-    }
-    
-    overlapsVec (vec: Vec2): boolean {
-      return this.position.x - this.width <= vec.x && vec.x <= this.position.x + this.width
-          && this.position.y - this.heigth <= vec.y && vec.y <= this.position.y + this.heigth
-    }
-    
-    overlapsAABB (aabb: AABB): boolean {
-      return !(
-           aabb.position.x - aabb.width > this.position.x + this.heigth
-        || aabb.position.x + aabb.width < this.position.x - this.heigth
-        || aabb.position.y - aabb.width > this.position.y + this.heigth
-        || aabb.position.y + aabb.width < this.position.y - this.heigth
-      )
-    }
-  }
+
   */
   export class QuadTree {
     static MaxElements = 1

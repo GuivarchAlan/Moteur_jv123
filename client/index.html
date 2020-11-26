@@ -22,6 +22,7 @@
     <button onclick="requestFullScreen();">Plein écran</button>
     <div>
       Appels de rendu: <span id="drawCalls"></span>
+      Quadtree debug: <input type="checkbox" id="quadtree-debug">
     </div>
   </p>
   <div id="playarea">
@@ -38,6 +39,7 @@
       </div>
     </div>
     <canvas id="canvas" width="768" height="576"></canvas>
+    <canvas id="quadtree" width="768" height="576"></canvas>
   </div>
 
   <script>

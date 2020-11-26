@@ -61,7 +61,9 @@ export class Vec2 {
       this.divided = false
       this.components = [ ]
     }
-    
+    /*
+    ajoute le ColliderComponent au QuadTree
+    */
     insert (component : ColliderComponent): boolean {
       if (!this.bounds.intersectsWith(component.area)) {
         return false
@@ -77,7 +79,9 @@ export class Vec2 {
             || this.southEast.insert(component)
       }
     }
-    
+    /*
+    divise le QuadTree en 4 nouveau QuadTree
+    */
     divide () {
       const hw = (this.bounds.xMax-this.bounds.xMin) / 2
       const hh =  (this.bounds.yMax-this.bounds.yMin) / 2
@@ -100,7 +104,10 @@ export class Vec2 {
       this.components = [ ]
       this.divided = true
     }
-    
+    /*
+    la fonction récupère les ColliderComponent dans chaque feuille du QuadTree pour les mettre dans un
+    tableau. Chaque ligne correspond à une feuille 
+    */ 
     query (area: Rectangle, out: ColliderComponent[][] = []): ColliderComponent[][] {
       if (!this.bounds.intersectsWith(area)) {
         return out

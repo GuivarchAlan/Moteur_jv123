@@ -19,7 +19,6 @@ export class PhysicSystem implements ISystem {
     for (const e of Scene.current.entities()) {
       for (const comp of e.components) {
         if (comp instanceof ColliderComponent && comp.enabled) {
-          
           quadTree.insert(comp);
         }
       }
@@ -43,8 +42,10 @@ export class PhysicSystem implements ISystem {
       quadtreeContext.clearRect(0, 0,  GraphicsAPI.canvas.width, GraphicsAPI.canvas.height);
     }
     */
+   /* recupere les elements dans chaque feuille du QuadTree */
     let collisions: ColliderComponent[][] = [];
     collisions = quadTree.query(quadTree.bounds,collisions);
+    /* on parcourt chaques feuilles pour tester les collisions des ColliderComponents à l'interieur*/
     collisions.forEach(element => {
       if (element.length > 1) {
         for (let i = 0; i < element.length; i++) {
@@ -58,7 +59,9 @@ export class PhysicSystem implements ISystem {
             if (!c2.enabled || !c2.owner.active) {
               continue;
             }
-    
+            /*si c1 et c2 sont des element pouvant entree en collison et si leur area se superpose alors 
+            on applique la collision 
+            */
             if (c1.mask & c2.flag && c1.area.intersectsWith(c2.area)) {
               if (c1.handler) {
                 c1.handler.onCollision(c2);

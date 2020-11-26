@@ -101,41 +101,6 @@ export class Vec2 {
       this.divided = true
     }
     
-    getCollisions (): Array<[ColliderComponent, ColliderComponent]> {
-      const collisions: Array<[ColliderComponent, ColliderComponent]> = [];
-      const pile: QuadTree[] = [ ];
-      pile.push(this);
-      while (pile.length > 0) {
-        const quadtree = pile.pop();
-        if (this.northWest != null) {
-          pile.push(this.northWest);
-          pile.push(this.northEast);
-          pile.push(this.southWest);
-          pile.push(this.southEast);          
-        }
-        else {
-          for (let i = 0; i < this.components.length; i++) {
-            const c1 = this.components[i];
-            if (!c1.enabled || !c1.owner.active) {
-              continue;
-            }
-
-            for (let j = i + 1; j < this.components.length; j++) {
-              const c2 = this.components[j];
-              if (!c2.enabled || !c2.owner.active) {
-                continue;
-              }
-      
-              if (c1.mask & c2.flag && c1.area.intersectsWith(c2.area)) {
-                collisions.push([c1, c2]);
-              }
-            }
-          }
-        }
-      }
-      return collisions;
-    }
-    
     query (area: Rectangle, out: ColliderComponent[][] = []): ColliderComponent[][] {
       if (!this.bounds.intersectsWith(area)) {
         return out
@@ -156,7 +121,7 @@ export class Vec2 {
         return out
       }
     }
-
+  /*
     // ## Fonction draw
     // affichage de debug
     // les valeurs ajouter sur les position permettre de recentrer pour l'affichage sur le canvas
@@ -177,6 +142,6 @@ export class Vec2 {
               ctx.fillRect(Positions.x + offset.x, Positions.y + offset.y, size.x,size.y);
           });
       }
-  }
+  } */
   }
   

@@ -14,7 +14,7 @@ export class PhysicSystem implements ISystem {
     
     const rootSquare = new Rectangle(new Rectangle({x:0,y:0,width: GraphicsAPI.canvas.width,height: GraphicsAPI.canvas.height}));
     let quadTree = new QuadTree.QuadTree(rootSquare);
-    console.log("test0");
+
     
     for (const e of Scene.current.entities()) {
       for (const comp of e.components) {
@@ -24,7 +24,7 @@ export class PhysicSystem implements ISystem {
         }
       }
     }
-    
+   /* 
     var quadtreeCanvas = <HTMLCanvasElement>document.getElementById('quadtree');
     var quadtreeContext = <CanvasRenderingContext2D>quadtreeCanvas.getContext("2d");
     if((<HTMLInputElement>document.getElementById('quadtree-debug')).checked){
@@ -42,6 +42,7 @@ export class PhysicSystem implements ISystem {
     }else{
       quadtreeContext.clearRect(0, 0,  GraphicsAPI.canvas.width, GraphicsAPI.canvas.height);
     }
+    */
     let collisions: ColliderComponent[][] = [];
     collisions = quadTree.query(quadTree.bounds,collisions);
     collisions.forEach(element => {
